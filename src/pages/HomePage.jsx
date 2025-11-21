@@ -47,9 +47,11 @@ const posts = [
 
 const HomePage = () => {
   return (
-    <div className="flex min-h-screen bg-gray-100">
+    <div className="flex flex-col md:flex-row min-h-screen bg-gray-100">
       <Sidebar />
-      <PostsList posts={posts} />
+      <div className="flex-1 md:ml-96">
+        <PostsList posts={posts} />
+      </div>
     </div>
   );
 };

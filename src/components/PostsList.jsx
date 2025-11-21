@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import { useState } from "react";
 import { IoSearch } from "react-icons/io5";
 import { FaHouse } from "react-icons/fa6";
@@ -17,9 +18,9 @@ const PostsList = ({ posts }) => {
   });
 
   return (
-    <div className="posts flex-1 p-10 flex flex-col gap-8 ml-96 overflow-y-auto">
-      <div className="flex justify-between items-center mb-4">
-        <div className="relative w-1/3">
+    <div className="posts flex-1 p-10 sm:p-6 md:p-10 flex flex-col gap-8 overflow-y-auto">
+      <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-4">
+        <div className="relative w-full sm:w-1/3 flex justify-center">
           <IoSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xl" />
           <input
             type="text"
@@ -29,18 +30,20 @@ const PostsList = ({ posts }) => {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3 sm:gap-4">
             <FaHouse className="text-pink-500 text-2xl cursor-pointer hover:scale-110 transition-transform duration-200" />
             <FaRegHeart className="text-pink-500 text-2xl cursor-pointer hover:scale-110 transition-transform duration-200" />
-            <button className="flex items-center gap-2 bg-linear-to-r from-pink-400 to-yellow-400 text-white font-medium px-5 py-2 
-            rounded-xl shadow-md transition duration-300 hover:scale-105 hover:shadow-pink-200">
-              <IoIosAddCircleOutline className="text-2xl"/> Add Post
+            <Link to="/add-post">
+              <button className="flex items-center gap-2 bg-linear-to-r from-pink-400 to-yellow-400 text-white font-medium px-5 py-2 
+              rounded-xl shadow-md transition duration-300 hover:scale-105 hover:shadow-pink-200 text-sm sm:text-base">
+              <IoIosAddCircleOutline className="text-2xl" /> Add Post
             </button>
+            </Link>
           </div>
       </div>
 
-      <h1 className="font-bold text-2xl">Feed</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6 bg-transparent">
+      <h1 className="font-bold text-xl sm:text-2xl">Feed</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 bg-transparent">
         {filteredPosts.length > 0 ? (
           filteredPosts.map((post) => <Post key={post.id} post={post} />)
         ) : (
